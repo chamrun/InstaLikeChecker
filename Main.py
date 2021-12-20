@@ -82,7 +82,9 @@ def check_likes(driver):
 
     print('checking likes...')
 
-    liked_users_class = 'FPmhX notranslate MBL3Z'
+    # liked_users_class = 'FPmhX notranslate MBL3Z'
+    liked_users_class = 'Jv7Aj mArmR MqpiF  '
+    sleep(TIME_UNIT * 2)
     liked_users_elements = driver.find_elements_by_class_name(liked_users_class)
 
     print('liked by (elements):')
