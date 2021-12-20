@@ -1,0 +1,6 @@
+/venv
+/.idea
+*.download
+*.json
+venv/
+LoginData.ini
