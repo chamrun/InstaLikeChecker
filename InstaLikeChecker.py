@@ -87,7 +87,7 @@ def open_likes(driver):
     sleep(TIME_UNIT * 2)
 
 
-def check_likes(driver):
+def check_likes(driver, checking_ids):
     """
     print('second method: Done.')
     userid_element = \
@@ -197,9 +197,6 @@ def check_likes(driver):
     print('liked by (ids):')
     print(liker_users)
 
-    checking_ids = ['_mahla_f', 'herbalbeauty.shopp', '3rna_._', 'zeinabpanahi82', 'm_ch211', 'nara_mezon',
-                    '_divacosmetics_']
-
     for checking_id in checking_ids:
         if checking_id in liker_users:
             print('yes: ' + checking_id)
@@ -217,11 +214,15 @@ def main():
 
     sign_in(chrome_driver)
 
+    # Change post url, here :D
     open_url(chrome_driver, 'https://www.instagram.com/p/CXbiYpqISG0/')
 
     open_likes(chrome_driver)
 
-    check_likes(chrome_driver)
+    # Change 
+    checking_ids = ['_mahla_f', 'herbalbeauty.shopp', '3rna_._', 'zeinabpanahi82', 'm_ch211', 'nara_mezon',
+                    '_divacosmetics_']
+    check_likes(chrome_driver, checking_ids)
 
     input('write anything to exit\n')
 
