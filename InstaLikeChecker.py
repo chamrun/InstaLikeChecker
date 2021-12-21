@@ -208,6 +208,8 @@ def check_likes(driver):
 
 
 def main():
+    input('write anything to start\n')
+
     # Choose your favorite browser :)
     chrome_driver = webdriver.Chrome()
     # driver = webdriver.Firefox()
@@ -221,7 +223,7 @@ def main():
 
     check_likes(chrome_driver)
 
-    x = input('write anything to exit')
+    input('write anything to exit\n')
 
 
 if __name__ == '__main__':
