@@ -10,7 +10,8 @@ TIME_UNIT = 1
 
 def sign_in(driver):
     config = configparser.ConfigParser()
-    config.read('LoginData.ini')
+    # config.read('LoginData.ini')
+    config.read('login_data.ini')
 
     my_username = config['instagram']['username']
     my_password = config['instagram']['password']
