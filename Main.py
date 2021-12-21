@@ -41,8 +41,8 @@ def sign_in(driver):
     login_button.click()
 
     while 'login' in driver.current_url:
-        print("waiting for instagram to open completely...")
-        sleep(TIME_UNIT)
+        print("waiting for instagram to be opened completely...")
+        sleep(1)
 
     print('We logged in.')
 
@@ -59,56 +59,155 @@ def open_url(driver, post_url):
 
 
 def open_likes(driver):
-    likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[' \
-                         '2]/div/div/a/span'
+    sleep(TIME_UNIT)
+    likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[3]/div/div/section[' \
+                         '2]/div/div/a'
 
     print("Clicking on likes button...")
-
+    sleep(TIME_UNIT * 2)
     try:
         likes_button = driver.find_element_by_xpath(likes_button_xpath)
         likes_button.click()
     except NoSuchElementException:
-        print("couldn't open likes. trying another way.")
-        sleep(TIME_UNIT * 2)
-        likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[3]/div/div/section[' \
-                             '2]/div/div/a'
-        likes_button = driver.find_element_by_xpath(likes_button_xpath)
-        likes_button.click()
+        try:
+            print("couldn't open likes. trying another way.")
+            sleep(TIME_UNIT * 2)
+            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[' \
+                                 '2]/div/div/a/span'
+            likes_button = driver.find_element_by_xpath(likes_button_xpath)
+            likes_button.click()
+        except NoSuchElementException:
+            print("couldn't open likes. trying another way.")
+            sleep(TIME_UNIT * 2)
+            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[' \
+                                 '2]/div/div/a/span'
+            likes_button = driver.find_element_by_xpath(likes_button_xpath)
+            likes_button.click()
 
     sleep(TIME_UNIT * 2)
 
 
 def check_likes(driver):
+    """
+    print('second method: Done.')
+    userid_element = \
+    driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/div/article/div[2]/section[2]/div/div/a')[0].click()
+    sleep(2)
+
+    # here, you can see user list you want.
+    # you have to scroll down to download more data from instagram server.
+    # loop until last element with users table view height value.
+
+    users = []
+
+    height = driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div").value_of_css_property("padding-top")
+    match = False
+    while match == False:
+        lastHeight = height
+
+        # step 1
+        elements = driver.find_elements_by_xpath("//*[@id]/div/a")
+
+        # step 2
+        for element in elements:
+            if element.get_attribute('title') not in users:
+                users.append(element.get_attribute('title'))
+
+        # step 3
+        driver.execute_script("return arguments[0].scrollIntoView();", elements[-1])
+        sleep(1)
+
+        # step 4
+        height = driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div").value_of_css_property(
+            "padding-top")
+        if lastHeight == height:
+            match = True
+
+    print(users)
+    print(len(users))
+
+    print('second method: Done.')
+    """
+    # elems = driver.find_elements_by_class_name("//a[@class='FPmhX notranslate']")
+
+    """
+    elems = 
+
+    # elems = driver.find_elements_by_
+
+    print('elems: ')
+    print(elems)
+    users = []
+
+    for elem in elems:
+        users.append(elem.get_attribute('title'))
+        print('Title : ' + elem.get_attribute('title'))
+
+    print(users)
 
     print('checking likes...')
 
-    # liked_users_class = 'FPmhX notranslate MBL3Z'
-    liked_users_class = 'Jv7Aj mArmR MqpiF  '
+    liked_users_class = 'FPmhX notranslate MBL3Z'
+    # liked_users_class = 'Jv7Aj mArmR MqpiF'
     sleep(TIME_UNIT * 2)
     liked_users_elements = driver.find_elements_by_class_name(liked_users_class)
 
     print('liked by (elements):')
     print(liked_users_elements)
+"""
 
-    liked_users = []
+    liker_users_elements = driver.find_elements_by_xpath("//a[@class='FPmhX notranslate MBL3Z']")
+    liker_users = []
+    for liker_users_element in liker_users_elements:
+        liker_users.append(liker_users_element.get_attribute('title'))
+        print('liked by : ' + liker_users_element.get_attribute('title'))
+    """
     for liked_user in liked_users_elements:
-        username = liked_user.text
-        liked_users.append(username)
+        username = liked_user.get_attribute('title')
+        liker_users.append(username)
+    """
+
+    height = driver.find_element_by_xpath("/html/body/div[5]/div/div/div[2]/div/div").value_of_css_property(
+        "padding-top")
+
+    match = False
+
+    while not match:
+        lastHeight = height
+
+        # step 1
+        elements = driver.find_elements_by_xpath("//a[@class='FPmhX notranslate MBL3Z']")
+
+        # step 2
+        for element in elements:
+            if element.get_attribute('title') not in liker_users:
+                liker_users.append(element.get_attribute('title'))
+                print('liked by : ' + element.get_attribute('title'))
+
+        # step 3
+        driver.execute_script("return arguments[0].scrollIntoView();", elements[-1])
+        sleep(1)
+
+        # step 4
+        height = driver.find_element_by_xpath("/html/body/div[5]/div/div/div[2]/div/div").value_of_css_property(
+            "padding-top")
+        if lastHeight == height:
+            match = True
 
     print('liked by (ids):')
-    print(liked_users)
+    print(liker_users)
 
-    checking_ids = ['3rna_._', 'zeinabpanahi82', 'm_ch211', 'nara_mezon']
+    checking_ids = ['_mahla_f', 'herbalbeauty.shopp', '3rna_._', 'zeinabpanahi82', 'm_ch211', 'nara_mezon',
+                    '_divacosmetics_']
 
     for checking_id in checking_ids:
-        if checking_id in liked_users:
+        if checking_id in liker_users:
             print('yes: ' + checking_id)
         else:
             print('no:  ' + checking_id)
 
 
-if __name__ == '__main__':
-
+def main():
     # Choose your favorite browser :)
     chrome_driver = webdriver.Chrome()
     # driver = webdriver.Firefox()
@@ -121,3 +220,9 @@ if __name__ == '__main__':
     open_likes(chrome_driver)
 
     check_likes(chrome_driver)
+
+    x = input('write anything to exit')
+
+
+if __name__ == '__main__':
+    main()
