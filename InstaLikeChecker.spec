@@ -4,8 +4,8 @@ block_cipher = None
 
 
 a = Analysis(['InstaLikeChecker.py'],
-             pathex=['Pathofproject'],
-             binaries=[('C:\Program Files\Python39\\chromedriver.exe', '**.\\selenium\\webdriver**')],
+             pathex=['C:\Things\Programming\Freelance\karlancer'],
+             binaries=[('C:\Program Files\Python39\\chromedriver.exe', '.\\selenium\\webdriver')],
              datas=[],
              hiddenimports=[],
              hookspath=[],
@@ -30,4 +30,4 @@ coll = COLLECT(exe,
                a.datas,
                strip=False,
                upx=True,
-               name='**scriptname**')
+               name='InstaLikeChecker.py')
