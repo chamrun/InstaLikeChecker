@@ -72,15 +72,15 @@ def open_likes(driver):
         try:
             print("couldn't open likes. trying another way.")
             sleep(TIME_UNIT * 2)
-            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[' \
-                                 '2]/div/div/a/span'
+            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/' \
+                                 'section[2]/div/div/a/span'
             likes_button = driver.find_element_by_xpath(likes_button_xpath)
             likes_button.click()
         except NoSuchElementException:
             print("couldn't open likes. trying another way.")
             sleep(TIME_UNIT * 2)
-            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[' \
-                                 '2]/div/div/a/span'
+            likes_button_xpath = '//*[@id="react-root"]/section/main/div/div[1]/article/div/div[2]/div/div[2]/' \
+                                 'section[2]/div/div/a/span'
             likes_button = driver.find_element_by_xpath(likes_button_xpath)
             likes_button.click()
 
@@ -103,7 +103,7 @@ def check_likes(driver, checking_ids):
     height = driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div").value_of_css_property("padding-top")
     match = False
     while match == False:
-        lastHeight = height
+        last_height = height
 
         # step 1
         elements = driver.find_elements_by_xpath("//*[@id]/div/a")
@@ -120,7 +120,7 @@ def check_likes(driver, checking_ids):
         # step 4
         height = driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div").value_of_css_property(
             "padding-top")
-        if lastHeight == height:
+        if last_height == height:
             match = True
 
     print(users)
@@ -173,7 +173,7 @@ def check_likes(driver, checking_ids):
     match = False
 
     while not match:
-        lastHeight = height
+        last_height = height
 
         # step 1
         elements = driver.find_elements_by_xpath("//a[@class='FPmhX notranslate MBL3Z']")
@@ -191,7 +191,7 @@ def check_likes(driver, checking_ids):
         # step 4
         height = driver.find_element_by_xpath("/html/body/div[5]/div/div/div[2]/div/div").value_of_css_property(
             "padding-top")
-        if lastHeight == height:
+        if last_height == height:
             match = True
 
     print('liked by (ids):')
