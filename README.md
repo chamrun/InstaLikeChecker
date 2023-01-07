@@ -4,7 +4,9 @@
 
 #### my third freelancing project :)
 
-This python web crawler signs in to your Instagram account, then goes to the post you want, gets the list of usernames, and checks if each username liked the post or not.
+Welcome to our Instagram web crawler! With this Python-based tool, you can easily sign in to your Instagram account and see who has liked a specific post. Simply provide the post URL and the crawler will retrieve a list of all the usernames that have liked it.
+
+This can be a useful tool for tracking engagement on your posts or for seeing who is showing support for your content. We hope you find it useful! If you have any feedback or encounter any issues while using the crawler, please don't hesitate to let us know.
 
 ### How to use?
 1. Clone or download this repository.
